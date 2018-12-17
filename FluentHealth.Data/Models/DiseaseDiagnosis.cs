@@ -1,10 +1,10 @@
 ﻿namespace FluentHealth.Data.Models
 {
-    public class DiseaseSymptom
+    public class DiseaseDiagnosis
     {
         public short DiseaseId { get; set; }
-        public short SymptomId { get; set; }
+        public short DiagnosisId { get; set; }
         public Disease Disease { get; set; }
-        public Symptom Symptom { get; set; }
+        public Diagnosis Diagnosis { get; set; }
     }
 }

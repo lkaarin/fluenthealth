@@ -30,8 +30,9 @@ namespace FluentHealth.Web
         {
             services.AddDbContext<EFDBContext>(options =>
             {
-                options.UseSqlServer(_configurationRoot.GetConnectionString("FluentHealthDB"));
+                options.UseSqlServer(_configurationRoot.GetConnectionString("FluentHealthDB_CSI"));
             }, ServiceLifetime.Singleton);
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,10 +43,7 @@ namespace FluentHealth.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

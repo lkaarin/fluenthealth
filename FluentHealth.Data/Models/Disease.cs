@@ -11,7 +11,7 @@ namespace FluentHealth.Data.Models
 
         public Person Person { get; set; }
         public IEnumerable<DiseaseSymptom> Symptoms { get; set; }
-        public IEnumerable<Diagnosis> Diagnoses { get; set; }
+        public IEnumerable<DiseaseDiagnosis> Diagnoses { get; set; }
         public IEnumerable<DoctorVisit> Visits { get; set; }
         public IEnumerable<Attachment> Attachments { get; set; }
         public IEnumerable<DrugHistory> Drugs { get; set; }

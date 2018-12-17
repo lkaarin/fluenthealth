@@ -27,6 +27,17 @@ namespace FluentHealth.Data
                 .HasOne(x => x.Symptom)
                 .WithMany(x => x.Diseases)
                 .HasForeignKey(x => x.SymptomId);
+
+            modelBuilder.Entity<DiseaseDiagnosis>()
+                .HasKey(x => new { x.DiseaseId, x.DiagnosisId });
+            modelBuilder.Entity<DiseaseDiagnosis>()
+                .HasOne(x => x.Disease)
+                .WithMany(x => x.Diagnoses)
+                .HasForeignKey(x => x.DiseaseId);
+            modelBuilder.Entity<DiseaseDiagnosis>()
+                .HasOne(x => x.Diagnosis)
+                .WithMany(x => x.Diseases)
+                .HasForeignKey(x => x.DiagnosisId);
         }
     }
 }

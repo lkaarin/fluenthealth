@@ -42,13 +42,9 @@ namespace FluentHealth.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<short?>("DiseaseId");
-
                     b.Property<string>("Name");
 
                     b.HasKey("DiagnosisId");
-
-                    b.HasIndex("DiseaseId");
 
                     b.ToTable("Diagnoses");
                 });
@@ -70,6 +66,19 @@ namespace FluentHealth.Data.Migrations
                     b.HasIndex("PersonId");
 
                     b.ToTable("Diseases");
+                });
+
+            modelBuilder.Entity("FluentHealth.Data.Models.DiseaseDiagnosis", b =>
+                {
+                    b.Property<short>("DiseaseId");
+
+                    b.Property<short>("DiagnosisId");
+
+                    b.HasKey("DiseaseId", "DiagnosisId");
+
+                    b.HasIndex("DiagnosisId");
+
+                    b.ToTable("DiseaseDiagnosis");
                 });
 
             modelBuilder.Entity("FluentHealth.Data.Models.DiseaseSymptom", b =>
@@ -127,9 +136,13 @@ namespace FluentHealth.Data.Migrations
 
                     b.Property<short?>("DrugId");
 
+                    b.Property<DateTime?>("EndDate");
+
+                    b.Property<int>("PrescribedDays");
+
                     b.Property<float?>("Price");
 
-                    b.Property<bool>("Used");
+                    b.Property<DateTime?>("StartDate");
 
                     b.HasKey("DrugHistoryId");
 
@@ -196,18 +209,24 @@ namespace FluentHealth.Data.Migrations
                         .HasForeignKey("DiseaseId");
                 });
 
-            modelBuilder.Entity("FluentHealth.Data.Models.Diagnosis", b =>
-                {
-                    b.HasOne("FluentHealth.Data.Models.Disease")
-                        .WithMany("Diagnoses")
-                        .HasForeignKey("DiseaseId");
-                });
-
             modelBuilder.Entity("FluentHealth.Data.Models.Disease", b =>
                 {
                     b.HasOne("FluentHealth.Data.Models.Person", "Person")
                         .WithMany()
                         .HasForeignKey("PersonId");
+                });
+
+            modelBuilder.Entity("FluentHealth.Data.Models.DiseaseDiagnosis", b =>
+                {
+                    b.HasOne("FluentHealth.Data.Models.Diagnosis", "Diagnosis")
+                        .WithMany("Diseases")
+                        .HasForeignKey("DiagnosisId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FluentHealth.Data.Models.Disease", "Disease")
+                        .WithMany("Diagnoses")
+                        .HasForeignKey("DiseaseId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FluentHealth.Data.Models.DiseaseSymptom", b =>

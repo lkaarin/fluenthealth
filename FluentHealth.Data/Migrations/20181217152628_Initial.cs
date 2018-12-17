@@ -9,6 +9,19 @@ namespace FluentHealth.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Diagnoses",
+                columns: table => new
+                {
+                    DiagnosisId = table.Column<short>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Diagnoses", x => x.DiagnosisId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Drugs",
                 columns: table => new
                 {
@@ -112,23 +125,27 @@ namespace FluentHealth.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Diagnoses",
+                name: "DiseaseDiagnosis",
                 columns: table => new
                 {
+                    DiseaseId = table.Column<short>(nullable: false),
                     DiagnosisId = table.Column<short>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    DiseaseId = table.Column<short>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Diagnoses", x => x.DiagnosisId);
+                    table.PrimaryKey("PK_DiseaseDiagnosis", x => new { x.DiseaseId, x.DiagnosisId });
                     table.ForeignKey(
-                        name: "FK_Diagnoses_Diseases_DiseaseId",
+                        name: "FK_DiseaseDiagnosis_Diagnoses_DiagnosisId",
+                        column: x => x.DiagnosisId,
+                        principalTable: "Diagnoses",
+                        principalColumn: "DiagnosisId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DiseaseDiagnosis_Diseases_DiseaseId",
                         column: x => x.DiseaseId,
                         principalTable: "Diseases",
                         principalColumn: "DiseaseId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -162,8 +179,10 @@ namespace FluentHealth.Data.Migrations
                     DrugHistoryId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DrugId = table.Column<short>(nullable: true),
+                    PrescribedDays = table.Column<int>(nullable: false),
                     Price = table.Column<float>(nullable: true),
-                    Used = table.Column<bool>(nullable: false),
+                    StartDate = table.Column<DateTime>(nullable: true),
+                    EndDate = table.Column<DateTime>(nullable: true),
                     DiseaseId = table.Column<short>(nullable: true)
                 },
                 constraints: table =>
@@ -210,9 +229,9 @@ namespace FluentHealth.Data.Migrations
                 column: "DiseaseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Diagnoses_DiseaseId",
-                table: "Diagnoses",
-                column: "DiseaseId");
+                name: "IX_DiseaseDiagnosis_DiagnosisId",
+                table: "DiseaseDiagnosis",
+                column: "DiagnosisId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Diseases_PersonId",
@@ -251,7 +270,7 @@ namespace FluentHealth.Data.Migrations
                 name: "Attachments");
 
             migrationBuilder.DropTable(
-                name: "Diagnoses");
+                name: "DiseaseDiagnosis");
 
             migrationBuilder.DropTable(
                 name: "DiseaseSymptom");
@@ -261,6 +280,9 @@ namespace FluentHealth.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Visits");
+
+            migrationBuilder.DropTable(
+                name: "Diagnoses");
 
             migrationBuilder.DropTable(
                 name: "Symptoms");
