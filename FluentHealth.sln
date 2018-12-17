@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHealth.Web", "FluentHealth.Web\FluentHealth.Web.csproj", "{1054D26E-D729-43C8-A05F-95092B8937CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentHealth.Web", "FluentHealth.Web\FluentHealth.Web.csproj", "{1054D26E-D729-43C8-A05F-95092B8937CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHealth.Data", "FluentHealth.Data\FluentHealth.Data.csproj", "{A6BF0A9A-8CFC-4716-A849-6C085F6C1EF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentHealth.Data", "FluentHealth.Data\FluentHealth.Data.csproj", "{A6BF0A9A-8CFC-4716-A849-6C085F6C1EF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHealth.Core", "FluentHealth.Core\FluentHealth.Core.csproj", "{E5E5A19C-6A00-4B21-A9DA-7D9C85E13A62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHealth.Services", "FluentHealth.Services\FluentHealth.Services.csproj", "{033A8EC1-8C16-4568-BADC-EA0FC44BF8DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{A6BF0A9A-8CFC-4716-A849-6C085F6C1EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6BF0A9A-8CFC-4716-A849-6C085F6C1EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6BF0A9A-8CFC-4716-A849-6C085F6C1EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5E5A19C-6A00-4B21-A9DA-7D9C85E13A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5E5A19C-6A00-4B21-A9DA-7D9C85E13A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5E5A19C-6A00-4B21-A9DA-7D9C85E13A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5E5A19C-6A00-4B21-A9DA-7D9C85E13A62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{033A8EC1-8C16-4568-BADC-EA0FC44BF8DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{033A8EC1-8C16-4568-BADC-EA0FC44BF8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{033A8EC1-8C16-4568-BADC-EA0FC44BF8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{033A8EC1-8C16-4568-BADC-EA0FC44BF8DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

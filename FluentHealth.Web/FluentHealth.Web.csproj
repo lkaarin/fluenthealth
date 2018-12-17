@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="ViewModels\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
@@ -13,10 +12,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FluentHealth.Core\FluentHealth.Core.csproj" />
     <ProjectReference Include="..\FluentHealth.Data\FluentHealth.Data.csproj" />
+    <ProjectReference Include="..\FluentHealth.Services\FluentHealth.Services.csproj" />
   </ItemGroup>
 
 </Project>
