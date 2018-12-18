@@ -1,4 +1,4 @@
-﻿using FluentHealth.Core.Data;
+﻿using FluentHealth.Data.Repositories.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;

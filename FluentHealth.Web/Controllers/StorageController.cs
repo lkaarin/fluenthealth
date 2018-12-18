@@ -1,5 +1,5 @@
-﻿using FluentHealth.Core.Data;
-using FluentHealth.Core.Services;
+﻿using FluentHealth.Core.Services;
+using FluentHealth.Data.Repositories.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;

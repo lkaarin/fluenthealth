@@ -2,12 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -19,6 +15,7 @@
     <ProjectReference Include="..\FluentHealth.Core\FluentHealth.Core.csproj" />
     <ProjectReference Include="..\FluentHealth.Data\FluentHealth.Data.csproj" />
     <ProjectReference Include="..\FluentHealth.Services\FluentHealth.Services.csproj" />
+    <ProjectReference Include="..\FluentHealth.Utils\FluentHealth.Utils.csproj" />
   </ItemGroup>
 
 </Project>

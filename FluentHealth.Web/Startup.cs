@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentHealth.Core.Data;
 using FluentHealth.Core.Services;
 using FluentHealth.Data;
 using FluentHealth.Data.Repositories;
+using FluentHealth.Data.Repositories.Core;
 using FluentHealth.Services.Storage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,8 +32,6 @@ namespace FluentHealth.Web
             
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<EFDBContext>(options =>
@@ -42,13 +40,15 @@ namespace FluentHealth.Web
             }, ServiceLifetime.Singleton);
 
             services.AddScoped<IFilesStorage>(f => new LocalStorage(_hostingEnvironment.ContentRootPath, null));
-            services.AddScoped<IFilesRepository, EFFilesRepository>();
-
+           
+            //TO DO - remove
             services.Configure<FormOptions>(c =>
             {
                 c.ValueLengthLimit = int.MaxValue;
                 c.MultipartBodyLengthLimit = int.MaxValue;
             });
+
+            ConfigureRepositories(services);
 
             services.AddMvc();
         }
@@ -63,6 +63,17 @@ namespace FluentHealth.Web
 
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
+        }
+
+
+        private void ConfigureRepositories(IServiceCollection services)
+        {
+            services
+                .AddScoped<IFilesRepository, EFFilesRepository>()
+                .AddScoped<IDiseasesRepository, EFDiseasesRepository>()
+                .AddScoped<IPersonsRepository, EFPersonsRepository>()
+                .AddScoped<ISymptomsRepository, EFSymptomsRepository>()
+                .AddScoped<IDiagnosesRepositories, EFDiagnosesRepositories>();
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FluentHealth.Core.Data
+namespace FluentHealth.Data.Repositories.Core
 {
     public interface IFilesRepository
     {
