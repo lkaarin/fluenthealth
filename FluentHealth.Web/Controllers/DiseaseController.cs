@@ -26,6 +26,14 @@ namespace FluentHealth.Web.Controllers
 
         public IActionResult Create() => View(nameof(Edit), MapEditDiseaseViewModel());
 
+        [HttpPost]
+        public IActionResult Delete(short id)
+        {
+            _diseasesRepository.DeleteDisease(id);
+
+            return RedirectToAction(nameof(List));
+        }
+
         public IActionResult Edit(short id) => View(MapEditDiseaseViewModel(_diseasesRepository.GetDisease(id)));
 
         [HttpPost]
@@ -33,11 +41,19 @@ namespace FluentHealth.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                _diseasesRepository.SaveDisease(new Disease
+                {
+                    DiseaseId = diseaseViewModel.DiseaseId,
+                    StartDate = diseaseViewModel.StartDate,
+                    EndDate = diseaseViewModel.EndDate,
+                    Person = new Person { PersonId = diseaseViewModel.Person.Id},
+                    Symptoms = new List<DiseaseSymptom> (diseaseViewModel.Symptoms?.Select(x=>new DiseaseSymptom { SymptomId = x.Id })?? new DiseaseSymptom[] { })
+                });
                 return RedirectToAction(nameof(List));
             }
             else
             {
-                return View(diseaseViewModel);
+                return View(nameof(Edit), diseaseViewModel);
             }
         }
         public IActionResult List() => View(_diseasesRepository.GetDiseases().Select(MapDiseaseViewModel<DiseaseViewModel>).ToList());

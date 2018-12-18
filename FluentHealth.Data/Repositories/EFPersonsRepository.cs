@@ -1,5 +1,6 @@
 ﻿using FluentHealth.Data.Models;
 using FluentHealth.Data.Repositories.Core;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentHealth.Core.Services;
+﻿using FluentHealth.Core.Services;
 using FluentHealth.Data;
 using FluentHealth.Data.Repositories;
 using FluentHealth.Data.Repositories.Core;
 using FluentHealth.Services.Storage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -36,7 +31,8 @@ namespace FluentHealth.Web
         {
             services.AddDbContext<EFDBContext>(options =>
             {
-                options.UseSqlServer(_configurationRoot.GetConnectionString("FluentHealthDB_CSI"));
+                
+                options.UseSqlServer(_configurationRoot.GetConnectionString(_hostingEnvironment.IsDevelopment() ? "FluentHealthDB" : "FluentHealthDB_Azure"));
             }, ServiceLifetime.Singleton);
 
             services.AddScoped<IFilesStorage>(f => new LocalStorage(_hostingEnvironment.ContentRootPath, null));
@@ -62,7 +58,10 @@ namespace FluentHealth.Web
             }
 
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(r=>
+            {
+                r.MapRoute("default", "{controller=Disease}/{action=List}/{id?}");
+            });
         }
 
 

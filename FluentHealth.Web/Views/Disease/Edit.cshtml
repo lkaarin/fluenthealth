@@ -4,16 +4,24 @@
     ViewData["Title"] = "Disease";
 }
 <style>
-    input, select, textarea{
-        max-width:350px;
+    input, select, textarea {
+        /*max-width: 350px;*/
     }
-    form{
-        margin:auto;
-        max-width:1080px;
+
+    form {
+        margin: auto;
+        max-width: 680px;
     }
 </style>
 
 <form asp-action="Save" method="post">
+    <input type="hidden" asp-for="DiseaseId"/>
+    <div class="form-group row">
+        <label asp-for="Person" class="col-sm-2 col-form-label">Person</label>
+        <div class="col-sm-10">
+            <select asp-for="Person.Id" asp-items="@Model.AvailablePersons.Select(x=> new SelectListItem(x.Name, x.Id.ToString()))" class="form-control"></select>
+        </div>
+    </div>
     <div class="form-group row">
         <label asp-for="StartDate" class="col-sm-2 col-form-label">Start date</label>
         <div class="col-sm-10">
@@ -21,15 +29,9 @@
         </div>
     </div>
     <div class="form-group row">
-        <label asp-for="EndDate" class="col-sm-2 col-form-label">Start date</label>
+        <label asp-for="EndDate" class="col-sm-2 col-form-label">End date</label>
         <div class="col-sm-10">
             <input asp-for="EndDate" type="date" class="form-control">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="Person" class="col-sm-2 col-form-label">Person</label>
-        <div class="col-sm-10">
-            <select asp-for="Person" asp-items="@Model.AvailablePersons.Select(x=> new SelectListItem(x.Name, x.Id.ToString()))" class="form-control"></select>
         </div>
     </div>
     <div class="form-group row">
@@ -44,12 +46,14 @@
             <select asp-for="Diagnoses" multiple class="form-control" asp-items="@Model.AvailableDiagnoses.Select(x=> new SelectListItem(x.Name, x.Id.ToString()))"></select>
         </div>
     </div>
-    <div class="form-group row">
+    @*<div class="form-group row">
         <label for="exampleFormControlTextarea1" class="col-sm-2 col-form-label">Example textarea</label>
         <div class="col-sm-10">
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
+    </div>*@
+    <div class="form-group row">
+        <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Save</button>
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
 </form>

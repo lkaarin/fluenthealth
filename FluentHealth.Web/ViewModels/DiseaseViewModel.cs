@@ -8,7 +8,7 @@ namespace FluentHealth.Web.ViewModels
     public class DiseaseViewModel
     {
         public short DiseaseId { get; set; }
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.Now.Date;
         public DateTime? EndDate { get; set; }
         public BaseItemViewModel<short> Person { get; set; }
         public IEnumerable<BaseItemViewModel<short>> Symptoms { get; set; }

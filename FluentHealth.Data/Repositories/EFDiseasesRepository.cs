@@ -31,7 +31,7 @@ namespace FluentHealth.Data.Repositories
                     .ThenInclude(x => x.Drug)
                 .Include(x => x.Person)
                 .Include(x => x.Symptoms)
-                    .ThenInclude(x=>x.Symptom)
+                    .ThenInclude(x => x.Symptom)
                 .AsQueryable();
 
             if (predicate != null)
@@ -40,6 +40,39 @@ namespace FluentHealth.Data.Repositories
             }
 
             return query;
+        }
+
+        public void SaveDisease(Disease disease)
+        {
+            if (disease.DiseaseId == 0)
+            {
+                _dbContext.Diseases.Add(disease);
+            }
+            else
+            {
+                var diseaseEntry = _dbContext.Diseases.SingleOrDefault(x => x.DiseaseId == disease.DiseaseId);
+
+                if (diseaseEntry == null)
+                {
+                    throw new NullReferenceException($"Can't find disease with id {disease.DiseaseId}");
+                }
+
+                //_dbContext.Entry(disease).State = EntityState.Modified;
+
+                diseaseEntry.StartDate = disease.StartDate;
+                diseaseEntry.EndDate = disease.EndDate;
+                diseaseEntry.Person = _dbContext.Persons.SingleOrDefault(x => x.PersonId == disease.Person.PersonId);
+                diseaseEntry.Symptoms = disease.Symptoms;
+            }
+
+            _dbContext.SaveChanges();
+        }
+
+        public void DeleteDisease(short id)
+        {
+            _dbContext.Diseases.Remove(_dbContext.Diseases.SingleOrDefault(x => x.DiseaseId == id));
+
+            _dbContext.SaveChanges();
         }
     }
 }

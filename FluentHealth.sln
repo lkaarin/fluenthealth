@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentHealth.Core", "Fluent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentHealth.Services", "FluentHealth.Services\FluentHealth.Services.csproj", "{033A8EC1-8C16-4568-BADC-EA0FC44BF8DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHealth.Utils", "FluentHealth.Utils\FluentHealth.Utils.csproj", "{A3448358-46AD-43A6-9FF0-DFCD37A26024}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentHealth.Utils", "FluentHealth.Utils\FluentHealth.Utils.csproj", "{A3448358-46AD-43A6-9FF0-DFCD37A26024}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FluentHealth.Database", "FluentHealth.Database\FluentHealth.Database.sqlproj", "{5595946A-10F3-4FB7-8634-99E9185A55BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,12 @@ Global
 		{A3448358-46AD-43A6-9FF0-DFCD37A26024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3448358-46AD-43A6-9FF0-DFCD37A26024}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3448358-46AD-43A6-9FF0-DFCD37A26024}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5595946A-10F3-4FB7-8634-99E9185A55BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5595946A-10F3-4FB7-8634-99E9185A55BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5595946A-10F3-4FB7-8634-99E9185A55BF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5595946A-10F3-4FB7-8634-99E9185A55BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5595946A-10F3-4FB7-8634-99E9185A55BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5595946A-10F3-4FB7-8634-99E9185A55BF}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

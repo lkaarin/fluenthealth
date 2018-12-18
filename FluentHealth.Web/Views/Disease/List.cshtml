@@ -4,7 +4,7 @@
     ViewData["Title"] = "List";
 }
 
-<table class="table table-striped" style="max-width:800px; margin:auto">
+<table class="table table-striped" >
     <thead>
         <tr>
             <th></th>
@@ -30,11 +30,14 @@
                 <td>@disease.StartDate.ToString(DateTimeFormats.DateFormat)</td>
                 <td>@disease.EndDate?.ToString(DateTimeFormats.DateFormat)</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@disease.DiseaseId" class="btn">Edit</a>
-                    <a asp-action="Delete" class="btn">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@disease.DiseaseId" class="btn btn-outline-primary">Edit</a>
+                    <form asp-action="Delete" asp-route-id="@disease.DiseaseId" style="display:inline">
+                        <button class="btn btn-outline-danger">Delete</button>
+                    </form>
+                   
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<a asp-action="Create">Add new</a>
+<a asp-action="Create" class="btn btn-outline-primary btn-lg btn-block">Add new</a>
